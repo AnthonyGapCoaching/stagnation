@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pourquoi tu stagnes ? (et comment changer ça) – GAP coaching</title>
+<style>
+:root{--bg:#F1F5FA;--card:#fff;--ink:#171C25;--mute:#55627a;--line:#d3dcea;--acc:#2864E8;--accbg:#e1eafc;--bad:#b4421f;--badbg:#fbe4da;--blue:#2864E8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14243B;--card:#1b2f4b;--ink:#F1F5FA;--mute:#9db0cc;--line:#2c4466;--acc:#7ea4f5;--accbg:#1f3f73;--bad:#ff9d78;--badbg:#40241a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14243B;--card:#1b2f4b;--ink:#F1F5FA;--mute:#9db0cc;--line:#2c4466;--acc:#7ea4f5;--accbg:#1f3f73;--bad:#ff9d78;--badbg:#40241a;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;border-top:6px solid #2864E8;background:var(--bg);color:var(--ink);font:16px/1.55 "Barlow","Segoe UI",system-ui,sans-serif}
+main{max-width:720px;margin:0 auto;padding:24px 16px 48px}
+h1{font:800 clamp(28px,7vw,40px)/1.05 "Barlow Condensed","Arial Narrow",sans-serif;margin:0 0 14px}
+h2{font:700 22px/1.2 "Barlow Condensed","Arial Narrow",sans-serif;margin:0 0 6px}
+.nav{display:flex;gap:8px;overflow-x:auto;margin-bottom:16px;padding-bottom:4px}
+.nav button{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 14px;font:inherit;cursor:pointer}
+.nav button[aria-current=true]{background:var(--ink);color:var(--bg);font-weight:700}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:14px}
+.mute{color:var(--mute);font-size:14px}
+label{display:block;font-weight:600;margin:10px 0 4px}
+input,select{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px}
+.btn{width:100%;margin-top:14px;background:var(--ink);color:var(--bg);border:0;border-radius:10px;padding:14px;font:800 17px inherit;cursor:pointer}
+.opt{display:block;width:100%;text-align:left;margin-top:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:12px;font:inherit;cursor:pointer}
+.opt.ok{background:var(--accbg);border-color:var(--acc)}.opt.ko{background:var(--badbg);border-color:var(--bad)}
+.big{font:800 34px/1.1 "Barlow Condensed","Arial Narrow",sans-serif}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.stat{background:var(--bg);border-radius:8px;padding:10px}.stat b{display:block;font-size:22px}
+.msg{background:var(--accbg);border-left:5px solid var(--acc);border-radius:8px;padding:12px 14px;margin:12px 0}
+.warn{background:var(--badbg);border-left:5px solid var(--bad);border-radius:8px;padding:12px 14px;margin:10px 0}
+.ck{display:flex;gap:10px;align-items:flex-start;font-weight:400;margin:8px 0}.ck input{width:auto;margin-top:5px}
+.ig{display:block;text-align:center;text-decoration:none;background:var(--blue);color:#fff;font-weight:800;border-radius:10px;padding:15px;margin-top:12px}
+.bar{height:6px;background:var(--line);border-radius:4px;margin-bottom:12px}.bar i{display:block;height:100%;background:var(--acc);border-radius:4px}
+.sec{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:12px;width:100%;margin-top:10px;font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+@media print{.nav,.ig,.btn,.sec{display:none!important}body{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+<main>
+<h1>Pourquoi tu stagnes ? (et comment changer ça)</h1>
+<div id="app"></div>
+</main>
+<script>
+
+var IG = "https://ig.me/m/anthony.gapcoaching";
+var app = document.getElementById("app");
+function $(i){return document.getElementById(i);}
+function cta(){
+ return '<div class="card mute" style="margin-top:14px">Ces outils donnent des repères généraux et ne remplacent pas une analyse et une programmation approfondies. Pour des conseils vraiment adaptés à toi, consulte un coach professionnel.<a class="ig" target="_blank" rel="noopener noreferrer" href="'+IG+'">En parler avec Anthony – GAP coaching</a></div>';
+}
+
+/* Moteur de quiz à choix (options classées de la pire à la meilleure) */
+var A = {
+ regularite:["Régularité","Fixe 3 séances dans ton agenda avant d’en ajouter. La constance bat l’intensité ponctuelle."],
+ sommeil:["Sommeil et récupération","Vise 7 à 9 h par nuit. C’est le levier gratuit le plus sous-estimé pour progresser."],
+ nutrition:["Nutrition","Calcule tes calories et vise environ 1,6 à 2,2 g de protéines par kg de poids de corps."],
+ suivi:["Suivi des charges","Note charge et répétitions à chaque séance, et cherche à battre ta dernière performance."],
+ intensite:["Intensité","Rapproche tes séries de l’échec, avec 1 à 3 répétitions en réserve sur la plupart des séries de travail."],
+ volume:["Volume","Vise en général 10 à 20 séries par muscle et par semaine, en augmentant progressivement."],
+ programme:["Structure du programme","Garde le même programme 8 à 12 semaines et progresse dessus plutôt que de tout changer."],
+ social:["Ton entourage de passionnés","Tu n’es pas seul à t’entraîner aussi dur. Échanger avec des gens qui partagent ta pratique aide à tenir dans la durée et à progresser."]
+};
+function quiz(qs,done){
+ var ans=[],i=0;
+ (function show(){
+  var q=qs[i];
+  app.innerHTML='<section class="card"><div class="bar"><i style="width:'+(i/qs.length*100)+'%"></i></div><div class="mute">Question '+(i+1)+' sur '+qs.length+'</div><h2>'+q.q+'</h2>'+
+  q.o.map(function(o,k){return '<button class="opt" data-k="'+k+'">'+o+'</button>';}).join("")+'</section>';
+  document.querySelectorAll(".opt").forEach(function(b){b.onclick=function(){
+   ans.push({c:q.c,s:+b.dataset.k}); i++;
+   if(i<qs.length)show(); else app.innerHTML=done(ans)+cta();
+  };});
+ })();
+}
+function weakest(ans,n){
+ return ans.filter(function(a){return a.s<2;}).sort(function(a,b){return a.s-b.s;}).slice(0,n);
+}
+function tips(list){
+ return list.map(function(a){return '<div class="warn"><b>'+A[a.c][0]+'</b><br>'+A[a.c][1]+'</div>';}).join("");
+}
+
+
+/* 3. Diagnostic progression */
+function progres(){
+ quiz([
+  {c:"suivi",q:"Ces 6 dernières semaines, tes charges ou tes répétitions ont…",o:["Baissé ou stagné","Un peu augmenté","Augmenté régulièrement"]},
+  {c:"volume",q:"Combien de séries fais-tu par muscle et par semaine ?",o:["Moins de 6","6 à 9","10 ou plus"]},
+  {c:"sommeil",q:"Comment sont ton sommeil et ta fatigue ?",o:["Souvent fatigué, moins de 6 h","Correct mais irrégulier","7 h ou plus, en forme"]},
+  {c:"nutrition",q:"Ton alimentation par rapport à ton objectif ?",o:["Je ne sais pas ce que je mange","Au feeling","Calories et protéines suivies"]},
+  {c:"intensite",q:"Tes séries de travail sont…",o:["Loin de l’échec","Parfois proches de l’échec","Proches de l’échec (1 à 3 répétitions en réserve)"]},
+  {c:"regularite",q:"Combien de séances as-tu manquées le mois dernier ?",o:["Plus de 4","2 à 4","0 ou 1"]}
+ ],function(ans){
+  var w=weakest(ans,2);
+  return '<section class="card"><h2>Pourquoi tu stagnes, et comment changer ça</h2>'+
+  bilan(ans,w)+'</section>';
+ });
+}
+
+
+progres();
+</script>
+</body>
+</html>
